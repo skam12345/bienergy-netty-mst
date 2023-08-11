@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DID Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="netty.spring.master.netty.dao.ChargerDao">
+    <select id="loginList" resultType="netty.spring.master.netty.dao.ChargerDao">       
+        SELECT chn_charger_id FROM charger_info
+        WHERE chn_charger_id IS NOT NULL
+    </select>
+    <select id="callListCommand" resultType="netty.spring.master.netty.dao.ChargerDao">
+        SELECT send_no FROM send_command as sc
+        WHERE cin_code = '0AH02' AND send_control_yn = 'N'
+    </select>   
+    <select id="chargerData" parameterType="int" resultType="netty.spring.master.netty.dao.ChargerDao">
+        SELECT se.send_no, se.charger_plug_no, se.pyud_charge, se.pyud_no, ch.chn_charger_id FROM send_command as se 
+        INNER JOIN (SELECT * FROM charger_info WHERE chn_no = (SELECT chnNo FROM send_command WHERE send_control_yn = 'N' WHERE {#sendNo})) as ch 
+        WHERE send_no = {#sendNo};
+    </select>
+
+</mapper>
