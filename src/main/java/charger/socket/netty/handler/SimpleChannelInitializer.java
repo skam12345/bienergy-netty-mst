@@ -30,7 +30,6 @@ public class SimpleChannelInitializer extends ChannelInitializer<SocketChannel>{
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         try {
-        	System.out.println("??ee");
         	ChannelPipeline pipline01 = ch.pipeline();
     		System.out.println(ch.remoteAddress());
     		LoginHandler loginHandler = new LoginHandler();

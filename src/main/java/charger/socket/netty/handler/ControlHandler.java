@@ -49,7 +49,6 @@ public class ControlHandler extends ChannelInboundHandlerAdapter {
 						if(this.values != null && model != null) {
 							byte [] startHexArray = new BackStageStart(values, model.getPlugNo()).start();
 							if(execute.callPlugNumber(values.substring(0, 12)).equals("01")) {
-								System.out.println("????");
 								for(int i = 34; i < 49; i++) {
 									this.serialCode01 += String.format(ChargerEVCConstant.FORMAT, startHexArray[i]);
 								}

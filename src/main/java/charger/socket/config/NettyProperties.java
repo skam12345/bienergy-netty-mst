@@ -13,6 +13,9 @@ import lombok.Setter;
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "netty")
+
+
+3
 public class NettyProperties {
     @NotNull
     @Size(min=7888, max=7888)
